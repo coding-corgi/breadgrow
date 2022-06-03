@@ -1,10 +1,22 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-gdgd
+<html lang="ko">
+
+
+{% include 'head.html' %}
+
+
+<body style="font-family: ONE-Mobile-Regular">
+
+    {% include 'header.html' %}
+
+    <hr>
+
+    {% block content %}
+    {% endblock %}
+
+    <hr>
+
+    {% include 'footer.html' %}
+
 </body>
 </html>
