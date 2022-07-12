@@ -9,7 +9,19 @@
         <div>
 
             <span>Kcalculator</span>
+            {% if user.is_authenticated %}
+                <a href="{% url 'kcalapp:detail' pk=user.pk %}?" class="pragmatic_header_nav">
+                    <span>Kcalculator</span>
+                </a>
+
+            {% endif %}
+
+
+
             {% if not user.is_authenticated %}
+            <a href="{% url 'accountapp:create' %}">
+                <span>SignUp</span>
+            </a>
             <a href="{% url 'accountapp:login' %}?next={{  request.path }}">
                 <span>Login</span>
             </a>
@@ -21,7 +33,6 @@
                 <span>Logout</span>
             </a>
             {% endif %}
-            <span>Kcalculator2</span>
         </div>
 
     </div>
