@@ -37,7 +37,7 @@ def hello_world(request):
 class AccountCreateView(CreateView):
     model = User
     form_class = UserCreationForm
-    success_url = reverse_lazy('accountapp:test')
+    success_url = reverse_lazy('kcalculatorapp:home')
     template_name = 'accountapp/create.html'
 
 
@@ -62,3 +62,6 @@ class AccountDeleteView(DeleteView):
     context_object_name = 'target_user'
     success_url = reverse_lazy('accountapp:login')
     template_name = 'accountapp/delete.html'
+
+
+

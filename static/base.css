@@ -19,13 +19,26 @@
     font-style: normal;
 }
 
+@font-face {
+    font-family: 'MaplestoryOTFBold';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-04@2.1/MaplestoryOTFBold.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'ONE-Mobile-POP';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2105_2@1.0/ONE-Mobile-POP.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
 
-.breadgrow_logo {
+.breadgrow_logo{
     font-family: MaplestoryOTFBold;
 }
 
-.breadgrow_footer_button {
+.breadgrow_footer_button{
     font-size: .9rem;
+
 }
 
 .breadgrow_footer {
@@ -36,4 +49,74 @@
 .breadgrow_header {
     text-align: center;
     margin: 2rem 0;
+}
+
+
+@media screen and (max-width:500px){
+    html {
+        font-size: 13px;
+    }
+}
+
+a {
+    color: black;
+    text-decoration: none;
+}
+
+a:hover {
+    color: black;
+    text-decoration: none;
+}
+
+.breadgrow_header_nav {
+    margin: 0 0.5rem;
+    font-size: 1.2rem;
+    font-family: 'ONE-Mobile-POP';
+}
+
+.breadgrow_header_navbar {
+    margin: 1rem 0;
+}
+
+/*.table{*/
+/*    display: inline-block;*/
+/*    font-size: 2rem;*/
+/*    margin-left: 1rem;*/
+
+/*}*/
+/*.table table-hover{*/
+/*    display: inline-block;*/
+/*    margin-left: 1rem;*/
+/*}*/
+
+/*.progress{*/
+/*    margin-left: 1rem;*/
+/*    max-width: 26rem;*/
+/*    height: 2rem;*/
+/*}*/
+
+
+.kcal_1st_line{
+    width: 30rem;
+    margin-left: 3rem;
+    font-size: 1.5rem;
+}
+
+.progress{
+    height: 2rem;
+}
+
+.kcal_2nd_line{
+    width: 220px;
+    margin: 1rem;
+    font-size: 1rem;
+}
+
+.accordion-button{
+    text-align: center;
+}
+
+#graph_container {
+    height: 400px;
+    min-width: 310px;
 }

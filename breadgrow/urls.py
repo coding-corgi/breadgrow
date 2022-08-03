@@ -18,7 +18,10 @@ from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path, include
 
+from kcalculatorapp.views import home
+
 urlpatterns = [
+    path('', home, name='home'),
     path('admin/', admin.site.urls),
     path('kcalculator/', include('kcalculatorapp.urls')),
     path('accounts/', include('accountapp.urls')),
