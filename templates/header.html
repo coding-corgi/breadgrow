@@ -28,6 +28,9 @@
                 <span>Login</span>
             </a>
         {% else %}
+            <a href="{% url 'articleapp:list' %}" class="breadgrow_header_nav">
+                <span>Articles</span>
+            </a>
             <a href="{% url 'kcalculatorapp:detail' pk=user.pk %}?" class="breadgrow_header_nav">
                 <span>Kcalculator</span>
             </a>

@@ -59,6 +59,7 @@ INSTALLED_APPS = [
     'bootstrap4',
     'profileapp',
     'kcalculatorapp',
+    'articleapp',
 ]
 
 MIDDLEWARE = [

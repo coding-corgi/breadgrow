@@ -17,9 +17,14 @@ ACTV_CHOICE =(
 )
 
 TENSION_CHOICE =(
-    ('low', '저강도'),
-    ('mid', '중강도'),
-    ('high', '고강도'),
+    (0.45, '저강도'),
+    (0.55, '중강도'),
+    (0.65, '고강도'),
+)
+
+DIET_LEAN =(
+    ('diet', '다이어트-체지방감소'),
+    ('lean', '린매스-근육증가'),
 )
 
 
@@ -35,3 +40,24 @@ class Kcal(models.Model):
     actv = models.FloatField(max_length=200, choices=ACTV_CHOICE, null=False, verbose_name='활동량')
     tension =models.CharField(max_length=200, choices=TENSION_CHOICE,  null=False, verbose_name='운동강도')
     created_at = models.DateField(auto_now_add=True, null=True)
+    goal = models.CharField(max_length=200, choices=DIET_LEAN,  null=False, verbose_name='운동목적')
+
+
+
+
+
+
+
+
+#
+#
+#
+# class Kcal(models.Model):
+#     height = models.PositiveIntegerField(default='',  null=False , verbose_name='height')
+#     weight = models.PositiveIntegerField(default='',  null=False, verbose_name='weight')
+#     age = models.PositiveIntegerField(default='',  null=False, verbose_name='age')
+#     sex = models.CharField(max_length=200, choices=SEX_CHOICE,  null=False, verbose_name='sex')
+#
+#
+#
+

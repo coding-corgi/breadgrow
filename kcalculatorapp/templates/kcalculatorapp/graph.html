@@ -1,12 +1,18 @@
 {% extends 'base.html' %}
 
+
+
+
 {% block content %}
+
 
     <script src="https://code.highcharts.com/stock/highstock.js"></script>
     <script src="https://code.highcharts.com/stock/modules/data.js"></script>
     <script src="https://code.highcharts.com/stock/modules/exporting.js"></script>
     <script src="https://code.highcharts.com/stock/modules/export-data.js"></script>
     <script src="https://code.highcharts.com/stock/modules/accessibility.js"></script>
+
+
 
 
 
@@ -28,16 +34,11 @@
 
 
 
+                <div id="container"></div>
 
-        <div id="container"></div>
-
-        </div>
+                </div>
     {% endif %}
 
-{##}
-{#</div>#}
-{#      {% endif %}#}
-{##}
 
 
 
@@ -119,9 +120,6 @@
             'https://cdn.jsdelivr.net/gh/highcharts/highcharts@v7.0.0/samples/data/goog-c.json',
             success
         );
-
-
-
 
     </script>
 
