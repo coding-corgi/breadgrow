@@ -1,3 +1,4 @@
+
 {% extends 'base.html' %}
 {% block content %}
 
@@ -11,21 +12,26 @@
       <a href="{% url 'kcalculatorapp:create' %}">
         <h2 style="font-family: ONE-Mobile-POP">
           Create Kcal
+
+
         </h2>
       </a>
       {% else %}
 
 
 
+
           <div style="display: flex; text-align: center;justify-content: center">
               <div class="kcal_1st_line" style="margin: 2rem ">
                    <div class="btn-group" role="group" aria-label="Basic example" style="height: 3.5rem; text-align: center;">
-                    <button type="button" class="btn btn-success" data-bs-toggle="tooltip" data-bs-placement="top" style="font-size: 1.3rem;width: 15rem ;border-radius: 8px"
-                            title="최대심박수의 65~75%" onclick="Diet_btn()"><div>Diet</div>
-                    </button>
-                    <button type="button" class="btn btn-primary" data-bs-toggle="tooltip" data-bs-placement="top" style="font-size: 1.3rem;width: 15rem ;border-radius: 8px"
-                            title="최대심박수의 85~95%" onclick="testfunc()"> <div>Lean Mass</div>
-                    </button>
+{#                    <button type="button" class="btn btn-success" data-bs-toggle="tooltip" data-bs-placement="top" style="font-size: 1.3rem;width: 15rem ;border-radius: 8px"#}
+{#                            title="최대심박수의 65~75%" onclick="Diet_btn()"><div>Diet</div>#}
+{#                    </button>#}
+{#                    <button type="button" class="btn btn-primary" data-bs-toggle="tooltip" data-bs-placement="top" style="font-size: 1.3rem;width: 15rem ;border-radius: 8px"#}
+{#                            title="최대심박수의 85~95%" onclick="testfunc()"> <div>Lean Mass</div>#}
+{#                    </button>#}
+
+
                 </div>
                   <table class="table">
                       <thead>
@@ -40,21 +46,61 @@
                       <tbody>
                       <tr>
                           <th scope="row">탄수화물</th>
-                          <td id="carbo_kcal">Mark</td>
-                          <td id="carbo_g">Otto</td>
-                          <td id="carbo_per">@mdo</td>
+                          {% if target_kcal.kcal.tension == 'high' %}
+                              <td id="carbo_kcal">3</td>
+                              <td id="carbo_g">5</td>
+                              <td id="carbo_per">65%</td>
+
+                          {% elif target_kcal.kcal.tension == 'mid' %}
+                              <td id="carbo_kcal">2}</td>
+                              <td id="carbo_g">4</td>
+                              <td id="carbo_per">55%</td>
+
+                          {% else %}
+                              <td id="carbo_kcal">6</td>
+                              <td id="carbo_g">9</td>
+                              <td id="carbo_per">45%</td>
+                          {% endif %}
+
+
                       </tr>
                       <tr>
-                          <th scope="row">단백질</th>
-                          <td id="protein_kcal">Jacob</td>
-                          <td id="protein_g">Thornton</td>
-                          <td id="protein_per">@fat</td>
+                          {% if target_kcal.kcal.tension == 'high' %}
+                              <th scope="row">단백질</th>
+                              <td id="protein_kcal">7</td>
+                              <td id="protein_g">a</td>
+                              <td id="protein_per">ff</td>
+                          {% elif target_kcal.kcal.tension == 'mid' %}
+                              <th scope="row">단백질</th>
+                              <td id="protein_kcal">3</td>
+                              <td id="protein_g">0</td>
+                              <td id="protein_per">%</td>
+                          {% else %}
+                              <th scope="row">단백질</th>
+                              <td id="protein_kcal">353</td>
+                              <td id="protein_g">123</td>
+                              <td id="protein_per">42</td>
+                          {% endif %}
+
                       </tr>
                       <tr>
-                          <th scope="row">지방</th>
-                          <td id="fat_kcal">Larry the</td>
-                          <td id="fat_g">@twitter</td>
-                          <td id="fat_per">@twitter</td>
+                          {% if target_kcal.kcal.tension == 'high' %}
+                              <th scope="row">지방</th>
+                              <td id="fat_kcal">Larry the</td>
+                              <td id="fat_g">{{ bmr }}</td>
+                              <td id="fat_per">@twitter</td>
+                          {% elif target_kcal.kcal.tension == 'mid' %}
+                              <th scope="row">지방</th>
+                              <td id="fat_kcal">Larry the</td>
+                              <td id="fat_g">@twitter</td>
+                              <td id="fat_per">@twitter</td>
+                          {% else %}
+                              <th scope="row">지방</th>
+                              <td id="fat_kcal">Larry the</td>
+                              <td id="fat_g">@twitter</td>
+                              <td id="fat_per">@twitter</td>
+                          {% endif %}
+
                       </tr>
                       </tbody>
 
@@ -265,7 +311,7 @@
 
 
 
-        }
+
 
         function Lean_btn() {
             count = "활동대사량은 " + Math.round({{ bmr }} + 500) +"Kcal" // 주 1-2
@@ -294,12 +340,12 @@
 
             count = "활동대사량은 " + Math.round({{ bmr }} + 500) +"Kcal" // 주 1-2
             document.querySelector("#fat_per").innerText = count;
-        }
+
 
          function testfunc() {
             count = "내용물 바꾸기"
             document.querySelectorAll(".change_1").innerText = count;
-        }
+
 
 
     </script>

@@ -48,17 +48,127 @@ class KcalDetailView(DetailView):
     context_object_name = 'target_kcal'
     template_name = 'kcalculatorapp/detail.html'
 
-
     def get_context_data(self, **kwargs):
         try:
-            if self.request.user.kcal.sex == 'male':
-                context = super().get_context_data(**kwargs)
-                context['bmr'] = round((66 + (13.8 * self.request.user.kcal.weight + (5 * self.request.user.kcal.height)) - (6.8 * self.request.user.kcal.age)) * (self.request.user.kcal.actv))
-                return context
-            else:
-                context = super().get_context_data(**kwargs)
-                context['bmr'] = round((655 + (9.6 * self.request.user.kcal.weight + (1.8 * self.request.user.kcal.height)) - (4.7 * self.request.user.kcal.age)) * (self.request.user.kcal.actv))
-                return context
+            kcl = self.request.user.kcal
+            men_kcal = round((66 + (13.8 * kcl.weight + (5 * kcl.height)) - (6.8 * kcl.age)) * (kcl.actv))
+            women_kcal = round((655 + (9.6 * kcl.weight + (1.8 * kcl.height)) - (4.7 * kcl.age)) * (kcl.actv))
+
+            # if kcl.goal == 'diet':
+            #     if kcl.sex == 'male':
+            #         bmr = men_kcal - 500
+            #     else:
+            #         bmr = women_kcal - 500
+            #     return bmr
+            # else:
+            #     if kcl.sex == 'male':
+            #         bmr = men_kcal + 500
+            #     else:
+            #         bmr = women_kcal + 500
+            #     return bmr
+
+        #     if kcl:
+        #         context = super().get_context_data(**kwargs)
+        #         context['bmr'] = bmr
+        #         context['carb_kcal'] = bmr * kcal.tension
+        #         context['prt_kcal'] = prg_g * 4
+        #         context['fat_kcal'] = bmr - (carb_kcal + prt_kcal)
+        #
+        #         return context
+        # except:
+        #     HttpResponseRedirect(reverse('kcalculatorapp:create'))
+
+
+            # if kcl.goal == 'diet':
+            #     if kcl.sex == 'male':
+            #         bmr = men_kcal - 500
+            #     else:
+            #         bmr = women_kcal - 500
+            #     return bmr
+            # else:
+            #     if kcl.sex == 'male':
+            #         bmr = men_kcal + 500
+            #     else:
+            #         bmr = women_kcal + 500
+            #     return bmr
+            #
+            # kcal_list = [
+            # carb_kcal = bmr * kcal.tension
+            # prt_kcal = prg_g * 4
+            # fat_kcal = bmr - (carb_kcal + prt_kcal)
+            # carb_g = carb_kcal / 4
+            # prt_g = kcl.weight * 1.6,
+            # fat_g = fat_per / 9,
+            # carb_per = round((carb_kcal / bmr) * 100),
+            # prt_per = round((prt_kcal / bmr) * 100),
+            # fat_per = round((fat_kcal / bmr) * 100),
+            # ]
+            #
+            # context = super().get_context_data(**kwargs)
+            # context['bmr'] = bmr
+            # context[prt_g]
+            # return context
+
+            # if kcl:
+            #     if kcl.sex == 'male':
+            #         if kcl.goal == 'diet':
+            #             context = super().get_context_data(**kwargs)
+            #             context['bmr','aa'] = men_kcal -500 , 22
+            #             return context
+            #         else:
+            #             context = super().get_context_data(**kwargs)
+            #             context['bmr'] = men_kcal + 500
+            #             return context
+            #     else:
+            #         if self.request.user.kcal.goal == 'diet':
+            #             context = super().get_context_data(**kwargs)
+            #             context['bmr'] = women_kcal -500
+            #             return context
+            #         else:
+            #             context = super().get_context_data(**kwargs)
+            #             context['bmr'] = women_kcal +500
+            #             return context
+
+             # 이거 잘 됨.
+            if kcl:
+                if kcl.sex == 'male':
+                    if kcl.goal == 'diet':
+                        context = super().get_context_data(**kwargs)
+                        context['bmr'] = men_kcal -500
+                        return context
+                    else:
+                        context = super().get_context_data(**kwargs)
+                        context['bmr'] = men_kcal + 500
+                        return context
+                else:
+                    if self.request.user.kcal.goal == 'diet':
+                        context = super().get_context_data(**kwargs)
+                        context['bmr'] = women_kcal -500
+                        return context
+                    else:
+                        context = super().get_context_data(**kwargs)
+                        context['bmr'] = women_kcal +500
+                        return context
+
+
+            # if self.request.user.kcal.sex == 'male':
+            #     if self.request.user.kcal.goal == 'diet':
+            #         context = super().get_context_data(**kwargs)
+            #         context['bmr'] = round((66 + (13.8 * self.request.user.kcal.weight + (5 * self.request.user.kcal.height)) - (6.8 * self.request.user.kcal.age)) * (self.request.user.kcal.actv)) - 500
+            #         return context
+            #     else:
+            #         context = super().get_context_data(**kwargs)
+            #         context['bmr'] = round((66 + (13.8 * self.request.user.kcal.weight + (5 * self.request.user.kcal.height)) - (6.8 * self.request.user.kcal.age)) * (self.request.user.kcal.actv)) + 500
+            #         return context
+            # else:
+            #     if self.request.user.kcal.goal == 'diet':
+            #         context = super().get_context_data(**kwargs)
+            #         context['bmr'] = round((655 + (9.6 * self.request.user.kcal.weight + (1.8 * self.request.user.kcal.height)) - (4.7 * self.request.user.kcal.age)) * (self.request.user.kcal.actv)) - 500
+            #         return context
+            #     else:
+            #         context = super().get_context_data(**kwargs)
+            #         context['bmr'] = round((655 + (9.6 * self.request.user.kcal.weight + (1.8 * self.request.user.kcal.height)) - (4.7 * self.request.user.kcal.age)) * (self.request.user.kcal.actv)) + 500
+            #         return context
         except:
              HttpResponseRedirect(reverse('kcalculatorapp:create'))
 
