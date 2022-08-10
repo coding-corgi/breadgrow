@@ -15,9 +15,9 @@ WORKDIR /home/
 
 RUN echo "665"
 
-RUN git clone git@github.com:coding-corgi/pragmatic.git
+RUN git clone git@github.com:coding-corgi/breadgrow.git
 
-WORKDIR /home/pragmatic/
+WORKDIR /home/breadgrow/
 
 RUN pip install -r requirements.txt
 
@@ -27,4 +27,4 @@ RUN pip install mysqlclient
 
 EXPOSE 8000
 
-CMD ["bash","-c", "python manage.py collectstatic --noinput --settings=pragmatic.settings.deploy && python manage.py migrate --settings=pragmatic.settings.deploy && gunicorn pragmatic.wsgi  --env DJANGO_SETTINGS_MODULE=pragmatic.settings.deploy --bind 0.0.0.0:8000"]
+CMD ["bash","-c", "python manage.py collectstatic --noinput --settings=breadgrow.settings.deploy && python manage.py migrate --settings=breadgrow.settings.deploy && gunicorn breadgrow.wsgi  --env DJANGO_SETTINGS_MODULE=breadgrow.settings.deploy --bind 0.0.0.0:8000"]
