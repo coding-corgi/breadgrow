@@ -52,7 +52,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'django',
         'USER': 'django',
-        'PASSWORD': 'tkdgk219*',
+        'PASSWORD': read_secret('MYSQL_PASSWORD'),
         'HOST': 'mariadb',
         'PORT': '3306',
     }
