@@ -49,7 +49,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'breadgrow.urls'
+# ROOT_URLCONF = 'breadgrow.urls'
 
 TEMPLATES = [
     {

@@ -35,9 +35,10 @@ FROM python:3.9.0
 
 WORKDIR /home/
 
-RUN echo "123242f223"
+RUN echo "fssf3"
 
 RUN git clone https://github.com/coding-corgi/breadgrow.git
+
 
 WORKDIR /home/breadgrow/
 
