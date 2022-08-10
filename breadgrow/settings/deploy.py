@@ -31,7 +31,7 @@ SECRET_KEY = read_secret('DJANGO_SECRET_KEY')
 # SECRET_KEY = env('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
