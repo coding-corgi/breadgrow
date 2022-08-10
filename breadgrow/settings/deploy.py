@@ -35,7 +35,7 @@ DEBUG = False
 
 ALLOWED_HOSTS = ['*']
 
-CSRF_TRUSTED_ORIGINS = ['breadgrow.me']
+# CSRF_TRUSTED_ORIGINS = ['breadgrow.me']
 
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
@@ -52,7 +52,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'django',
         'USER': 'django',
-        'PASSWORD': read_secret('MYSQL_PASSWORD'),
+        'PASSWORD': 'tkdgk219*',
         'HOST': 'mariadb',
         'PORT': '3306',
     }
