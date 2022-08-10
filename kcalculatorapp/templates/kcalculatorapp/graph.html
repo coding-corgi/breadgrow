@@ -6,6 +6,7 @@
 {% block content %}
 
 
+
     <script src="https://code.highcharts.com/stock/highstock.js"></script>
     <script src="https://code.highcharts.com/stock/modules/data.js"></script>
     <script src="https://code.highcharts.com/stock/modules/exporting.js"></script>
@@ -34,9 +35,17 @@
 
 
 
-                <div id="container"></div>
 
-                </div>
+        <script src="https://code.highcharts.com/highcharts.js"></script>
+        <script src="https://code.highcharts.com/modules/exporting.js"></script>
+        <script src="https://code.highcharts.com/modules/export-data.js"></script>
+        <script src="https://code.highcharts.com/modules/accessibility.js"></script>
+
+        <figure class="highcharts-figure">
+            <div id="container"></div>
+            <p class="highcharts-description">
+            </p>
+        </figure>
     {% endif %}
 
 
@@ -45,82 +54,60 @@
 
 
     <script>
-        var seriesOptions = [],
-            seriesCounter = 0,
-            names = ['MSFT', 'AAPL'];
 
-        /**
-         * Create the chart when all data is loaded
-         * @return {undefined}
-         */
-        function createChart() {
+        kcal_list = []
 
-            Highcharts.stockChart('container', {
-
-                rangeSelector: {
-                    selected: 4
-                },
-
-                yAxis: {
-                    labels: {
-                        formatter: function () {
-                            return (this.value > 0 ? ' + ' : '') + this.value + '%';
-                        }
-                    },
-                    plotLines: [{
-                        value: 0,
-                        width: 2,
-                        color: 'silver'
-                    }]
-                },
-
-                plotOptions: {
-                    series: {
-                        compare: 'percent',
-                        showInNavigator: true
-                    }
-                },
-
-                tooltip: {
-                    pointFormat: '<span style="color:{series.color}">{series.name}</span>: <b>{point.y}</b> ({point.change}%)<br/>',
-                    valueDecimals: 2,
-                    split: true
-                },
-
-                series: seriesOptions
-            });
-        }
-
-        function success(data) {
-            var name = this.url.match(/(msft|aapl|goog)/)[0].toUpperCase();
-            var i = names.indexOf(name);
-            seriesOptions[i] = {
-                name: name,
-                data: data
-            };
-
-            // As we're loading the data asynchronously, we don't know what order it
-            // will arrive. So we keep a counter and create the chart when all the data is loaded.
-            seriesCounter += 1;
-
-            if (seriesCounter === names.length) {
-                createChart();
+        if ('{{ target_kcal.kcal.goal }}' == 'lean') {
+            for (let i = 0; i < 13; i++) {
+                kcal_list.push(Math.round(((({{ target_kcal.kcal.weight }}  -(-500 / 7000) * i) ) + Number.EPSILON) * 100) / 100)
             }
         }
 
-        Highcharts.getJSON(
-            'https://cdn.jsdelivr.net/gh/highcharts/highcharts@v7.0.0/samples/data/msft-c.json',
-            success
-        );
-        Highcharts.getJSON(
-            'https://cdn.jsdelivr.net/gh/highcharts/highcharts@v7.0.0/samples/data/aapl-c.json',
-            success
-        );
-        Highcharts.getJSON(
-            'https://cdn.jsdelivr.net/gh/highcharts/highcharts@v7.0.0/samples/data/goog-c.json',
-            success
-        );
 
+        else {
+            for (let i = 0; i < 13; i++) {
+                 kcal_list.push(Math.round(((({{ target_kcal.kcal.weight }}  -(500 / 7000) * i) ) + Number.EPSILON) * 100) / 100)
+                }
+        }
+
+
+
+
+
+        Highcharts.chart('container', {
+            chart: {
+                type: 'line'
+            },
+            title: {
+                text: '체중 예상 그래프'
+            },
+            subtitle: {
+                text: ''
+            },
+            xAxis: {
+                categories: ['Start', '1m', '2m', '3m', '4m', '5m', '6m', '7m', '8m', '9m', '10m', '11m','1Year']
+            },
+            yAxis: {
+                title: {
+                    text: 'Weight (Kg)'
+                }
+            },
+            plotOptions: {
+                line: {
+                    dataLabels: {
+                        enabled: true
+                    },
+                    enableMouseTracking: false
+                }
+            },
+
+
+
+            series: [{
+                name: '{{ target_kcal.profile.nickname }}',
+                data: kcal_list
+            }]
+        });
     </script>
 
 

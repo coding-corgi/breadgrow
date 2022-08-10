@@ -10,6 +10,12 @@ class Article(models.Model):
     image = models.ImageField(upload_to='article/', null=False)
     content = models.TextField(null=True)
 
-    created_at = models.DateField(auto_now_add=True, null=True)
+    created_at = models.DateTimeField(auto_now=True, null=True)
+
+    class Meta:
+        ordering = ['-id']  # as you don't have created field. Reverse by ID will also show give you snippet_form_model in reverse order
+
+    def __str__(self):
+        return self.title
 
     # like =models.IntegerField(default=0)

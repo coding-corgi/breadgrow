@@ -34,11 +34,11 @@ DIET_LEAN =(
 class Kcal(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='kcal', null=True)
     height = models.PositiveIntegerField(default='',  null=False , verbose_name='키')
-    weight = models.PositiveIntegerField(default='',  null=False, verbose_name='체중')
+    weight = models.FloatField(default='',  null=False, verbose_name='체중')
     age = models.PositiveIntegerField(default='',  null=False, verbose_name='나이')
     sex = models.CharField(max_length=200, choices=SEX_CHOICE,  null=False, verbose_name='성별')
     actv = models.FloatField(max_length=200, choices=ACTV_CHOICE, null=False, verbose_name='활동량')
-    tension =models.CharField(max_length=200, choices=TENSION_CHOICE,  null=False, verbose_name='운동강도')
+    tension =models.FloatField(max_length=200, choices=TENSION_CHOICE,  null=False, verbose_name='운동강도')
     created_at = models.DateField(auto_now_add=True, null=True)
     goal = models.CharField(max_length=200, choices=DIET_LEAN,  null=False, verbose_name='운동목적')
 

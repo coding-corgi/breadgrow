@@ -1,0 +1,25 @@
+
+<div style="border: 1px solid; text-align: left; padding: 4%; margin: 1rem 0; border-radius: 1rem; border-color: #bbb;">
+    <div>
+{#        <img src="{{ target_user.profile.image.url }}" alt="" style="height: 12rem; width: 12rem; border-radius: 20rem; margin-bottom: 2rem; object-fit: cover;">#}
+        <img src="{{ comment.writer.profile.image.url }}" alt="" style=" display: inline-block; padding: 0; height: 2.5rem; width: 2.5rem; border-radius: 20rem; object-fit: cover;">
+{#        <img src="{{ target_article.writer.profile.image.url }}" alt="" style=" display: inline-block; padding: 0; height: 2rem;  width: 2rem; object-fit: cover;">#}
+        <strong style="display: inline-block;">
+            {{ comment.writer.profile.nickname }}
+        </strong>
+        &nbsp&nbsp&nbsp
+        <span style="display: flex; margin-left: auto; ">{{ comment.created_at }}</span>
+    </div>
+
+    <div style="margin: 1rem 0;">
+        {{ comment.content }}
+    </div>
+    {% if comment.writer == user %}
+    <div style="text-align: right">
+        <a href="{% url 'commentapp:delete' pk=comment.pk %}"\\
+          class="btn btn-danger rounded-ipll">
+            Delete
+        </a>
+    </div>
+    {% endif %}
+</div>

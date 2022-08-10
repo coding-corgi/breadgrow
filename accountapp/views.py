@@ -15,24 +15,6 @@ from accountapp.models import HellWorld
 
 has_ownership = [account_ownership_required, login_required]
 
-@login_required
-def hello_world(request):
-
-        if  request.method == 'POST':
-
-            temp = request.POST.get('hello_input')
-
-            new_hello= HellWorld()
-            new_hello.text = temp
-            new_hello.save()
-
-            return HttpResponseRedirect(reverse('accountapp:test'))
-
-        else:
-            list = HellWorld.objects.all()
-            return render(request, 'accountapp/helloworld.html', context={'hello_list': list})
-
-
 
 class AccountCreateView(CreateView):
     model = User

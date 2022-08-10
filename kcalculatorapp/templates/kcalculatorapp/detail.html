@@ -14,31 +14,39 @@
           Create Kcal
 
 
+
         </h2>
       </a>
       {% else %}
 
 
-
-
           <div style="display: flex; text-align: center;justify-content: center">
-              <div class="kcal_1st_line" style="margin: 2rem ">
+                            {#  탄단지 비율 바  #}
+              <div class="kcal_1st_line" style="margin-bottom: 4rem ">
                    <div class="btn-group" role="group" aria-label="Basic example" style="height: 3.5rem; text-align: center;">
-{#                    <button type="button" class="btn btn-success" data-bs-toggle="tooltip" data-bs-placement="top" style="font-size: 1.3rem;width: 15rem ;border-radius: 8px"#}
-{#                            title="최대심박수의 65~75%" onclick="Diet_btn()"><div>Diet</div>#}
-{#                    </button>#}
-{#                    <button type="button" class="btn btn-primary" data-bs-toggle="tooltip" data-bs-placement="top" style="font-size: 1.3rem;width: 15rem ;border-radius: 8px"#}
-{#                            title="최대심박수의 85~95%" onclick="testfunc()"> <div>Lean Mass</div>#}
-{#                    </button>#}
 
 
+                    {#    carbo/protein/fat kcal g % table                   #}
                 </div>
+
+                  <div class="progress" style="border-radius: 0.5rem; height: 50px;font-size: 15px">
+                      <div class="progress-bar bg-primary" role="progressbar" style="  size:5px;  width: {{ kcl.carbo_per }}%;" aria-valuenow="25" aria-valuenow="25" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
+                          <div>탄수화물</div>
+                           {{ kcl.carbo_per }}%
+                      </div>
+                      <div class="progress-bar bg-success" role="progressbar" style=" width: {{ kcl.proten_per }}%;" aria-valuenow="25" aria-valuenow="25" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
+                          <div>단백질</div> {{ kcl.proten_per }}%
+                      </div>
+                      <div class="progress-bar bg-danger" role="progressbar" style="  width: {{ kcl.fat_per }}%;" aria-valuenow="25" aria-valuenow="25" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
+                          <div>지방</div> {{ kcl.fat_per }}%
+                      </div>
+                  </div>
                   <table class="table">
                       <thead>
                       <tr>
                           <th scope="col"></th>
                           <th scope="col">Kcal</th>
-                          <th scope="col">g</th>
+                          <th style="position: relative;bottom: 5px" scope="col">g</th>
                           <th scope="col">%</th>
                       </tr>
                       </thead>
@@ -46,309 +54,71 @@
                       <tbody>
                       <tr>
                           <th scope="row">탄수화물</th>
-                          {% if target_kcal.kcal.tension == 'high' %}
-                              <td id="carbo_kcal">3</td>
-                              <td id="carbo_g">5</td>
-                              <td id="carbo_per">65%</td>
+                          <td id="carbo_kcal">{{ kcl.carbo_kcal }}</td>
+                          <td id="carbo_g">{{ kcl.carbo_g }}</td>
+                          <td id="carbo_per">{{ kcl.carbo_per }}</td>
 
-                          {% elif target_kcal.kcal.tension == 'mid' %}
-                              <td id="carbo_kcal">2}</td>
-                              <td id="carbo_g">4</td>
-                              <td id="carbo_per">55%</td>
-
-                          {% else %}
-                              <td id="carbo_kcal">6</td>
-                              <td id="carbo_g">9</td>
-                              <td id="carbo_per">45%</td>
-                          {% endif %}
+                      </tr>
+                      <tr>
+                          <th scope="row">단백질</th>
+                          <td id="protein_kcal">{{ kcl.proten_kcal }}</td>
+                          <td id="protein_g">{{ kcl.proten_g }}</td>
+                          <td id="protein_per">{{ kcl.proten_per }}</td>
 
 
                       </tr>
                       <tr>
-                          {% if target_kcal.kcal.tension == 'high' %}
-                              <th scope="row">단백질</th>
-                              <td id="protein_kcal">7</td>
-                              <td id="protein_g">a</td>
-                              <td id="protein_per">ff</td>
-                          {% elif target_kcal.kcal.tension == 'mid' %}
-                              <th scope="row">단백질</th>
-                              <td id="protein_kcal">3</td>
-                              <td id="protein_g">0</td>
-                              <td id="protein_per">%</td>
-                          {% else %}
-                              <th scope="row">단백질</th>
-                              <td id="protein_kcal">353</td>
-                              <td id="protein_g">123</td>
-                              <td id="protein_per">42</td>
-                          {% endif %}
-
+                          <th scope="row">지방</th>
+                          <td id="fat_kcal">{{ kcl.fat_kcal }}</td>
+                          <td id="fat_g">{{ kcl.fat_g }}</td>
+                          <td id="fat_per">{{ kcl.fat_per }}</td>
                       </tr>
                       <tr>
-                          {% if target_kcal.kcal.tension == 'high' %}
-                              <th scope="row">지방</th>
-                              <td id="fat_kcal">Larry the</td>
-                              <td id="fat_g">{{ bmr }}</td>
-                              <td id="fat_per">@twitter</td>
-                          {% elif target_kcal.kcal.tension == 'mid' %}
-                              <th scope="row">지방</th>
-                              <td id="fat_kcal">Larry the</td>
-                              <td id="fat_g">@twitter</td>
-                              <td id="fat_per">@twitter</td>
-                          {% else %}
-                              <th scope="row">지방</th>
-                              <td id="fat_kcal">Larry the</td>
-                              <td id="fat_g">@twitter</td>
-                              <td id="fat_per">@twitter</td>
-                          {% endif %}
-
+                          <th scope="row">총 칼로리</th>
+                          <td id="fat_kcal"><strong>{{ bmr }}</strong></td>
+                          <td id="fat_g"></td>
+                          <td id="fat_per"></td>
                       </tr>
+
+
                       </tbody>
 
+
+
                   </table>
-{##}
-{#                  <div class="progress">#}
-{#                      <div class="progress-bar" role="progressbar" style="width: 25%;" aria-valuenow="25"#}
-{#                           aria-valuemin="0" aria-valuemax="100">#}
-{#                          25% 탄수화물#}
-{#                      </div>#}
-{#                  </div>#}
-              </div>
-
-
-{#              <div class="kcal_2nd_line" style="display: block; text-align: center; margin: 1rem; margin-top: 6rem;">#}
-{##}
-{#                  <div class="accordion-item">#}
-{#                      <h2 class="accordion-header" id="flush-headingTwo">#}
-{#                          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"#}
-{#                                  data-bs-target="#flush-collapseTwo" aria-expanded="false"#}
-{#                                  aria-controls="flush-collapseTwo"#}
-{#                                  style="font-family: 'ONE 모바일고딕 Bold';font-size: 1.3rem ">#}
-{#                              운동 빈도#}
-{#                          </button>#}
-{#                      </h2>#}
-{#                      <div id="flush-collapseTwo" class="accordion-collapse collapse"#}
-{#                           aria-labelledby="flush-headingTwo" data-bs-parent="#accordionFlushExample">#}
-{#                          <div class="accordion-body"><strong>운동 빈도 설정</strong>#}
-{#                              <div></div>#}
-{#                              일주일 운동빈도에 따라 하루 먹는 섭취량이 달라집니다.#}
-{#                              <div></div>#}
-{#                              빈도가 적으면 소비되는 칼로리가 줄어들어 살찌기 쉽습니다.#}
-{#                              <div></div>#}
-{#                              빈도가 많으면 소비되는 칼로리가 느는만큼 근손실에 주의해야합니다.#}
-{#                          </div>#}
-{#                      </div>#}
-{#                  </div>#}
-{#                  <div class="dropdown">#}
-{#                      <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1"#}
-{#                              data-bs-toggle="dropdown" aria-expanded="false"#}
-{#                              style="font-family: MaplestoryOTFBol; font-size: 1.5rem; width: 220px">#}
-{#                          활동량 선택#}
-{#                      </button>#}
-{#                      <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">#}
-{#                          <li><a class="dropdown-item" id="basickcal_Btn" onclick="basickcal()">기초대사량</a></li>#}
-{#                          <li><a class="dropdown-item" id="week1_2_Btn" onclick="week1_2()">주1-2회 운동 | 좌식 생활</a></li>#}
-{#                          <li><a class="dropdown-item" id="week2_3_Btn" onclick="week2_3()">주2-3회 운동 | 적은 활동</a></li>#}
-{#                          <li><a class="dropdown-item" id="week3_4_Btn" onclick="week3_4()">주3-4회 운동 | 평균적 활동</a></li>#}
-{#                          <li><a class="dropdown-item" id="week4_5_Btn" onclick="week4_5()">주4-5회 운동 | 평균 ~ 많은 활동</a>#}
-{#                          </li>#}
-{#                          <li><a class="dropdown-item" id="week5_6_Btn" onclick="week5_6()">주5-6회 운동 | 많은 활동</a></li>#}
-{#                          <li><a class="dropdown-item" id="week7_twice_Btn" onclick="week7_twice()">주7회 하루 2번운동 | 아주 많은#}
-{#                              활동</a></li>#}
-{#                      </ul>#}
-{#                  </div>#}
-{##}
-{##}
-{#                  <div class="accordion accordion-flush" id="accordionFlushExample">#}
-{#                      <div class="accordion-item">#}
-{#                          <h2 class="accordion-header" id="flush-headingOne">#}
-{#                              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"#}
-{#                                      data-bs-target="#flush-collapseOne" aria-expanded="false"#}
-{#                                      aria-controls="flush-collapseOne"#}
-{#                                      style="font-family: 'ONE 모바일고딕 Bold';font-size: 1.3rem;margin-top: 2rem">#}
-{#                                  운동강도 설정#}
-{#                              </button>#}
-{#                          </h2>#}
-{#                          <div id="flush-collapseOne" class="accordion-collapse collapse"#}
-{#                               aria-labelledby="flush-headingOne"#}
-{#                               data-bs-parent="#accordionFlushExample">#}
-{#                              <div class="accordion-body"><strong>운동 강도 설정</strong>#}
-{#                                  <div></div>#}
-{#                                  고강도 중강도 저강도에 따라 탄수화물 섭취 비중이 달라집니다.#}
-{#                                  <div></div>#}
-{#                                  최대심박수의 85~100% > 고강도#}
-{#                                  <div></div>#}
-{#                                  최대심박수의 70~85% > 중강도#}
-{#                                  <div></div>#}
-{#                                  최대심박수의 50~70% > 저강도#}
-{#                              </div>#}
-{#                          </div>#}
-{#                      </div>#}
-{##}
-{##}
-{#                      <div class="btn-group" role="group" aria-label="Basic example" style="height: 3.2rem">#}
-{#                          <button type="button" class="btn btn-primary" data-bs-toggle="tooltip" data-bs-placement="top"#}
-{#                                  title="최대심박수의 65~75%">저강도#}
-{#                          </button>#}
-{#                          <button type="button" class="btn btn-primary" data-bs-toggle="tooltip" data-bs-placement="top"#}
-{#                                  title="최대심박수의 75~85%">중강도#}
-{#                          </button>#}
-{#                          <button type="button" class="btn btn-primary" data-bs-toggle="tooltip" data-bs-placement="top"#}
-{#                                  title="최대심박수의 85~95%">고강도#}
-{#                          </button>#}
-{#                      </div>#}
-{##}
-{##}
-{#                  </div>#}
-{##}
-{##}
-{#              </div>#}
-
-
-              <div class="kcal_3rd_line">
-                  <h2 style=" font-family: NanumSquareB">
-
-                      {#              <div id="change_mr">기초대사량은 {{ bmr }} Kcal</div>#}
-                  </h2>
-              </div>
-
-              <div class="kcal_4st_line">
-                  <div style="position: absolute; right: 10px; bottom: 500px">
-                      <span style="font-family: 'ONE 모바일고딕 Bold' ;display: inline-block">정보 수정하기</span>
+                  <span style="font-family: 'ONE 모바일고딕 Bold' ;display: block; text-align: right">
+                      정보 수정하기
                       <a class="material-icons"
                          style="box-shadow: 0 0 4px #ccc; border-radius: 5rem; mb-3; padding: 0.3rem;"
                          href="{% url 'kcalculatorapp:update' pk=target_kcal.kcal.pk %}">
-                          edit </a>
-                  </div>
+                          edit
+                      </a>
+                  </span>
+
+
+
+
               </div>
+
+
+{#              <div class="kcal_4st_line">#}
+{#                  <div style="position: absolute; right: 640px; bottom: 200px">#}
+{##}
+{#                      <span style="font-family: 'ONE 모바일고딕 Bold' ;display: inline-block">정보 수정하기</span>#}
+{#                      <a class="material-icons"#}
+{#                         style="box-shadow: 0 0 4px #ccc; border-radius: 5rem; mb-3; padding: 0.3rem;"#}
+{#                         href="{% url 'kcalculatorapp:update' pk=target_kcal.kcal.pk %}">#}
+{#                          edit </a>#}
+{#                  </div>#}
+{#              </div>#}
 
           </div>
 
-              <div id="change_mr" >기초대사량은 {{ bmr }}</div>
-
-            {{ target_kcal.kcal.tension }}
 
 
 </div>
       {% endif %}
 
-
-
-
-
-
-    <script>
-        //quiz 내용 : 버튼을 누를때마다 button의 innerText가 1씩 증가되게 해보세요.
-        //주의할 점!! 함수명과 변수명이 겹치면 안된다.
-        //페이지가 로딩되는 시점에 count 값을 0으로 초기화 한다.
-        let count = 0;
-
-
-        function Diet_btn() {
-            if ({{ target_kcal.kcal.tension }} == "low"){
-                count = "활동대사량은 " + Math.round({{ bmr }} - 500) +"Kcal" //
-                document.querySelector("#change_mr").innerText = count;
-                count = Math.round(({{ bmr }} - 500) * 0.45) //
-                document.querySelector("#carbo_kcal").innerText = count;
-                count = Math.round(  ({{ target_kcal.kcal.weight }} * 1.6) *4      ) //
-                document.querySelector("#protein_kcal").innerText = count;
-                count = Math.round(     ((  {{ bmr }} - 500)  *0.55) - ( ( {{ target_kcal.kcal.weight }} * 1.6) *4)    )    //
-                document.querySelector("#fat_kcal").innerText = count;
-                count = Math.round((({{ bmr }} - 500) * 0.45)/4) //
-                document.querySelector("#carbo_g").innerText = count;
-                count = Math.round((({{ target_kcal.kcal.weight }} * 1.6) *4)/4)  //
-                document.querySelector("#protein_g").innerText = count;
-                count = Math.round((((  {{ bmr }} - 500)  *0.55) - ( ( {{ target_kcal.kcal.weight }} * 1.6) *4))/9)    //
-                document.querySelector("#fat_g").innerText = count;
-                count = 45
-                document.querySelector("#carbo_per").innerText = count;
-                count = Math.round(( ( (({{ target_kcal.kcal.weight }} * 1.6) *4) /   ({{ bmr }} - 500)) )  *100      )  //
-                document.querySelector("#protein_per").innerText = count;
-                count = Math.round((((({{ bmr }} -500) * 0.55) - (( {{ target_kcal.kcal.weight }} * 1.6) * 4)) / ({{ bmr }} -500)) * 100)       //
-                document.querySelector("#fat_per").innerText = count;
-            }else if ({{ target_kcal.kcal.tension }} == 'mid'){
-                count = "활동대사량은 " + Math.round({{ bmr }} - 500) +"Kcal" //
-                document.querySelector("#change_mr").innerText = count;
-                count = Math.round(({{ bmr }} - 500) * 0.55) //
-                document.querySelector("#carbo_kcal").innerText = count;
-                count = Math.round(  ({{ target_kcal.kcal.weight }} * 1.6) *4      ) //
-                document.querySelector("#protein_kcal").innerText = count;
-                count = Math.round(     ((  {{ bmr }} - 500)  *0.45) - ( ( {{ target_kcal.kcal.weight }} * 1.6) *4)    )    //
-                document.querySelector("#fat_kcal").innerText = count;
-                count = Math.round((({{ bmr }} - 500) * 0.55)/4) //
-                document.querySelector("#carbo_g").innerText = count;
-                count = Math.round((({{ target_kcal.kcal.weight }} * 1.6) *4)/4)  //
-                document.querySelector("#protein_g").innerText = count;
-                count = Math.round((((  {{ bmr }} - 500)  *0.45) - ( ( {{ target_kcal.kcal.weight }} * 1.6) *4))/9)    //
-                document.querySelector("#fat_g").innerText = count;
-                count = 55
-                document.querySelector("#carbo_per").innerText = count;
-                count = Math.round(( ( (({{ target_kcal.kcal.weight }} * 1.6) *4) /   ({{ bmr }} - 500)) )  *100      )  //
-                document.querySelector("#protein_per").innerText = count;
-                count = Math.round((((({{ bmr }} -500) * 0.45) - (( {{ target_kcal.kcal.weight }} * 1.6) * 4)) / ({{ bmr }} -500)) * 100)       //
-                document.querySelector("#fat_per").innerText = count;
-            }else {
-                count = "활동대사량은 " + Math.round({{ bmr }} - 500) +"Kcal" //
-                document.querySelector("#change_mr").innerText = count;
-                count = Math.round(({{ bmr }} - 500) * 0.65) //
-                document.querySelector("#carbo_kcal").innerText = count;
-                count = Math.round(  ({{ target_kcal.kcal.weight }} * 1.6) *4      ) //
-                document.querySelector("#protein_kcal").innerText = count;
-                count = Math.round(     ((  {{ bmr }} - 500)  *0.35) - ( ( {{ target_kcal.kcal.weight }} * 1.6) *4)    )    //
-                document.querySelector("#fat_kcal").innerText = count;
-                count = Math.round((({{ bmr }} - 500) * 0.65)/4) //
-                document.querySelector("#carbo_g").innerText = count;
-                count = Math.round((({{ target_kcal.kcal.weight }} * 1.6) *4)/4)  //
-                document.querySelector("#protein_g").innerText = count;
-                count = Math.round((((  {{ bmr }} - 500)  *0.35) - ( ( {{ target_kcal.kcal.weight }} * 1.6) *4))/9)    //
-                document.querySelector("#fat_g").innerText = count;
-                count = 65
-                document.querySelector("#carbo_per").innerText = count;
-                count = Math.round(( ( (({{ target_kcal.kcal.weight }} * 1.6) *4) /   ({{ bmr }} - 500)) )  *100      )  //
-                document.querySelector("#protein_per").innerText = count;
-                count = Math.round((((({{ bmr }} -500) * 0.35) - (( {{ target_kcal.kcal.weight }} * 1.6) * 4)) / ({{ bmr }} -500)) * 100)       //
-                document.querySelector("#fat_per").innerText = count;
-                }
-
-
-
-
-
-        function Lean_btn() {
-            count = "활동대사량은 " + Math.round({{ bmr }} + 500) +"Kcal" // 주 1-2
-            document.querySelector("#carbo_kcal").innerText = count;
-
-            count = "활동대사량은 " + Math.round({{ bmr }} + 500) +"Kcal" // 주 1-2
-            document.querySelector("#protein_kcal").innerText = count;
-
-            count = "활동대사량은 " + Math.round({{ bmr }} + 500) +"Kcal" // 주 1-2
-            document.querySelector("#fat_kcal").innerText = count;
-
-            count = "활동대사량은 " + Math.round({{ bmr }} + 500) +"Kcal" // 주 1-2
-            document.querySelector("#carbo_g").innerText = count;
-
-            count = "활동대사량은 " + Math.round({{ bmr }} + 500) +"Kcal" // 주 1-2
-            document.querySelector("#protein_g").innerText = count;
-
-            count = "활동대사량은 " + Math.round({{ bmr }} + 500) +"Kcal" // 주 1-2
-            document.querySelector("#fat_g").innerText = count;
-
-            count = "활동대사량은 " + Math.round({{ bmr }} + 500) +"Kcal" // 주 1-2
-            document.querySelector("#carbo_per").innerText = count;
-
-            count = "활동대사량은 " + Math.round({{ bmr }} + 500) +"Kcal" // 주 1-2
-            document.querySelector("#protein_per").innerText = count;
-
-            count = "활동대사량은 " + Math.round({{ bmr }} + 500) +"Kcal" // 주 1-2
-            document.querySelector("#fat_per").innerText = count;
-
-
-         function testfunc() {
-            count = "내용물 바꾸기"
-            document.querySelectorAll(".change_1").innerText = count;
-
-
-
-    </script>
 
 
 {% endblock %}

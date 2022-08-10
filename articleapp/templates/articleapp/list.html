@@ -3,14 +3,14 @@
 
 {% block content %}
 
-<<<<<<< HEAD
+
 
 <style>
 
 
     .container {
         padding: 0;
-        margin: 0 , auto;
+        margin: 0, auto;
     }
 
 
@@ -42,7 +42,7 @@
     <script src="{% static 'js/magicgrid.js' %}"></script>
     {% else %}
     <div class="text-center">
-        <h1>No Articles YET!</h1>
+        <h1>아직 게시글이 없습니다!</h1>
     </div>
     {% endif %}
 
@@ -50,12 +50,11 @@
 
 
     <div style="text-align: center">
-=======
+
 <style>
 
     .container div {
         width: 250px;
-        height: 500px;
         background-color: antiquewhite;
         display: flex;
         justify-content: center;
@@ -75,32 +74,17 @@
 
     <!DOCTYPE html>
     <div class="container">
-        <div class="item1">1</div>
-        <div class="item2">2</div>
-        <div class="item3">3</div>
-        <div class="item4">4</div>
-        <div class="item5">5</div>
-        <div class="item6">6</div>
-        <div class="item7">7</div>
-        <div class="item8">8</div>
-        <div class="item9">9</div>
-        <div class="item10">10</div>
-        <div class="item11">11</div>
-        <div class="item12">12</div>
-        <div class="item13">13</div>
     </div>
 
      <div style="text-align: center">
->>>>>>> origin/main
         <a href="{% url 'articleapp:create' %}" class="btn btn-dark rounded-pill mt-3 mb-3 px-3">
             Create Article
         </a>
     </div>
 
-<<<<<<< HEAD
-=======
+
 <script src="{% static 'js/magicgrid.js' %}"></script>
 
->>>>>>> origin/main
+
 
 {% endblock %}
