@@ -8,6 +8,7 @@ django-bootstrap4==22.1
 django-environ==0.8.1
 django-mathfilters==1.0.0
 FormEncode==2.0.1
+gunicorn==20.1.0
 helloworld==0.1.dev0
 Mako==1.2.0
 MarkupSafe==2.1.1
