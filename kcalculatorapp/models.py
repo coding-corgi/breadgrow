@@ -27,6 +27,10 @@ DIET_LEAN =(
     ('lean', '린매스-근육증가'),
 )
 
+SPEED =(
+    (300, '천천히'),
+    (500, '빠르게'),
+)
 
 
 
@@ -41,6 +45,7 @@ class Kcal(models.Model):
     tension =models.FloatField(max_length=200, choices=TENSION_CHOICE,  null=False, verbose_name='운동강도')
     created_at = models.DateField(auto_now_add=True, null=True)
     goal = models.CharField(max_length=200, choices=DIET_LEAN,  null=False, verbose_name='운동목적')
+    speed = models.PositiveIntegerField(max_length=200, choices=SPEED, null=False, verbose_name='체중변화 속도')
 
 
 

@@ -46,6 +46,7 @@
             <p class="highcharts-description">
             </p>
         </figure>
+
     {% endif %}
 
 
@@ -54,21 +55,20 @@
 
 
     <script>
-
         kcal_list = []
-
         if ('{{ target_kcal.kcal.goal }}' == 'lean') {
             for (let i = 0; i < 13; i++) {
-                kcal_list.push(Math.round(((({{ target_kcal.kcal.weight }}  -(-500 / 7000) * i) ) + Number.EPSILON) * 100) / 100)
+                kcal_list.push(Math.round(((({{ target_kcal.kcal.weight }}  -(- {{ target_kcal.kcal.speed }} / 7000)*30 * i) ) + Number.EPSILON) * 100) / 100)
             }
         }
 
 
         else {
             for (let i = 0; i < 13; i++) {
-                 kcal_list.push(Math.round(((({{ target_kcal.kcal.weight }}  -(500 / 7000) * i) ) + Number.EPSILON) * 100) / 100)
+                 kcal_list.push(Math.round(((({{ target_kcal.kcal.weight }}  -( {{ target_kcal.kcal.speed }} / 7000)*30 * i) ) + Number.EPSILON) * 100) / 100)
                 }
         }
+
 
 
 
