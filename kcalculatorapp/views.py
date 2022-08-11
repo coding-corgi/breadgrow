@@ -64,17 +64,17 @@ class KcalDetailView(DetailView):
 
         if kcl.sex == 'male':
             if kcl.goal == 'diet':
-                context['bmr'] = men_kcal - 500
+                context['bmr'] = men_kcal - kcl.speed
 
             else:
-                context['bmr'] = men_kcal + 500
+                context['bmr'] = men_kcal + kcl.speed
 
         else:
             if kcl.goal == 'diet':
-                context['bmr'] = women_kcal - 500
+                context['bmr'] = women_kcal - kcl.speed
 
             else:
-                context['bmr'] = women_kcal + 500
+                context['bmr'] = women_kcal + kcl.speed
         bmr = context['bmr']
 
         carbo_per = round(kcl.tension * 100)
