@@ -33,7 +33,7 @@ DIET_LEAN =(
 
 class Kcal(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='kcal', null=True)
-    height = models.PositiveIntegerField(default='',  null=False , verbose_name='키')
+    height = models.PositiveIntegerField(default='',  null=False , verbose_name='키', )
     weight = models.FloatField(default='',  null=False, verbose_name='체중')
     age = models.PositiveIntegerField(default='',  null=False, verbose_name='나이')
     sex = models.CharField(max_length=200, choices=SEX_CHOICE,  null=False, verbose_name='성별')

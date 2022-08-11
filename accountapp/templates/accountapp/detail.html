@@ -10,6 +10,7 @@
 
 
             <img src="{{ target_user.profile.image.url }}" alt="" style="height: 12rem; width: 12rem; border-radius: 20rem; margin-bottom: 2rem; object-fit: cover;">
+
             <h2 style="font-family:ONE-Mobile-Regular">
 {#                {{ target_user.profile.nickname }}#}
 {#            <div class="card" style="width: 18rem; margin-inline: auto">#}
@@ -49,6 +50,8 @@
 {#                {{ target_user.profile.message }}#}
             </h5>
             {% else %}
+
+
             {% if target_user == user %}
             <a href="{% url 'profileapp:create' %}">
                 <h2 style="font-family:ONE-Mobile-Regular">
