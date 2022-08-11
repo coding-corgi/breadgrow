@@ -25,7 +25,7 @@
 {#                    </a>#}
 
 
-                    <div class="card" style="width: 14rem; margin-inline: auto">
+                    <div class="card" style="width: 14rem; margin-inline: auto;  border: rgba(72,56,62,0.2) solid 5px; border-radius: 15px ">
                         <div class="card-body" style="padding: 0.5rem 0.5rem;">
                             <h5 class="card-title" style="text-align: center; font-size: 1.7rem; margin-top: 1rem;"> [ {{ target_user.profile.nickname }} ]</h5>
                             <p class="card-text" style="font-size: 1.2rem;text-align: center"> {{ target_user.profile.message }}</p>
@@ -69,9 +69,9 @@
 
 
             {% if target_user == user %}
-                <div>
+                <div style="font-family: ONE-Mobile-POP; color: navy;">
                     <button type="button" class="btn btn-warning" style="display: inline-block;">
-                        <a href="{% url 'accountapp:update' pk=user.pk %}">
+                        <a href="{% url 'accountapp:update' pk=user.pk %}" style="color: white";>
                             비밀번호 변경
                         </a>
                     </button>
@@ -82,7 +82,7 @@
                     {#            </a>#}
 
                     <button type="button" class="btn btn-danger" style="display: inline-block;">
-                        <a href="{% url 'accountapp:delete' pk=user.pk %}">
+                        <a href="{% url 'accountapp:delete' pk=user.pk %}" style="color: white;">
                             회원 탈퇴
                         </a>
                     </button>
