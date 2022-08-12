@@ -1,5 +1,4 @@
 from django.contrib.auth.decorators import login_required
-from django.shortcuts import render
 
 # Create your views here.
 from django.urls import reverse, reverse_lazy
@@ -13,6 +12,7 @@ from articleapp.models import Article
 from commentapp.forms import CommentCreationForm
 
 
+# 게시글 생성뷰 /로그인여부확인
 @method_decorator(login_required, 'get')
 @method_decorator(login_required, 'post')
 class ArticleCreateView(CreateView):
@@ -20,24 +20,24 @@ class ArticleCreateView(CreateView):
     form_class = ArticleCreationForm
     template_name = 'articleapp/create.html'
 
+    # 서버에서 유저 만들기
     def form_valid(self, form):
         temp_article = form.save(commit=False)
         temp_article.writer = self.request.user
         temp_article.save()
         return super().form_valid(form)
 
-
     def get_success_url(self):
         return reverse('articleapp:detail', kwargs={'pk': self.object.pk})
 
-
+# 게시글 상세페이지 뷰
 class ArticleDetailView(DetailView ,FormMixin):
     model = Article
     form_class = CommentCreationForm
     context_object_name = 'target_article'
     template_name = 'articleapp/detail.html'
 
-
+# 게시글 수정뷰 /로그인여부확인
 @method_decorator(article_ownership_required, 'get')
 @method_decorator(article_ownership_required, 'post')
 class ArticleUpdateView(UpdateView):
@@ -49,7 +49,7 @@ class ArticleUpdateView(UpdateView):
     def get_success_url(self):
         return reverse('articleapp:detail', kwargs={'pk': self.object.pk})
 
-
+# 게시글 삭제뷰 /로그인여부확인
 @method_decorator(article_ownership_required, 'get')
 @method_decorator(article_ownership_required, 'post')
 class ArticleDeleteView(DeleteView):
@@ -58,7 +58,7 @@ class ArticleDeleteView(DeleteView):
     success_url = reverse_lazy('articleapp:list')
     template_name = 'articleapp/delete.html'
 
-
+# 게시글 리스트뷰
 class ArticleListView(ListView):
     model = Article
     context_object_name = 'article_list'

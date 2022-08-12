@@ -1,7 +1,7 @@
 from django.contrib.auth.models import User
 from django.db import models
 
-# Create your models here.
+# 프로필 커스텀 모델
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, related_name ='profile')
 

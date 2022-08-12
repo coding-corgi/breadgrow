@@ -1,6 +1,8 @@
 from django.contrib.auth.models import User
 from django.db import models
 
+
+# 칼로리 계산기 커스텀 모델
 # Create your models here.
 SEX_CHOICE =(
     ('male', '남자'),
@@ -46,23 +48,3 @@ class Kcal(models.Model):
     created_at = models.DateField(auto_now_add=True, null=True)
     goal = models.CharField(max_length=200, choices=DIET_LEAN,  null=False, verbose_name='운동목적')
     speed = models.PositiveIntegerField(max_length=200, choices=SPEED, null=False, verbose_name='체중변화 속도')
-
-
-
-
-
-
-
-
-#
-#
-#
-# class Kcal(models.Model):
-#     height = models.PositiveIntegerField(default='',  null=False , verbose_name='height')
-#     weight = models.PositiveIntegerField(default='',  null=False, verbose_name='weight')
-#     age = models.PositiveIntegerField(default='',  null=False, verbose_name='age')
-#     sex = models.CharField(max_length=200, choices=SEX_CHOICE,  null=False, verbose_name='sex')
-#
-#
-#
-

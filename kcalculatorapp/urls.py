@@ -4,7 +4,7 @@ from kcalculatorapp.views import KcalCreateView, KcalUpdateView, home, KcalDetai
 
 app_name ='kcalculatorapp'
 
-# 첫번째는 내가 만들 주소 , 뷰 ,이름
+# 칼로리계산기  생성,상세페이지,수정,그래프/메인페이지 라우터
 urlpatterns = [
     path('home/', home, name='home'),
     path('create/', KcalCreateView.as_view(), name='create'),

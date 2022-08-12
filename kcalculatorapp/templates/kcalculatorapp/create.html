@@ -1,9 +1,10 @@
 {% extends 'base.html' %}
-
 {% load bootstrap4 %}
 
-{% block content %}
 
+
+{#칼로리 계산기 생성 템플릿#}
+{% block content %}
     {% if target_kcal.kcal %}
         <a href="{% url 'kcalculatorapp:detail' pk=user.pk %}?" class="breadgrow_header_nav">
             <h2 style="font-family: ONE-Mobile-POP">
@@ -18,16 +19,11 @@
             <form action="{% url 'kcalculatorapp:create' %}" method="post">
                 {% csrf_token %}
                 {% bootstrap_form form %}
-                <button type="submit"  class="btn btn-dark rounded-pill col-12 mt-3">입력</button>
+                <button type="submit" class="btn btn-dark rounded-pill col-12 mt-3">입력</button>
             </form>
 
         </div>
 
     {% endif %}
-
-
-
-
-
 
 {% endblock %}

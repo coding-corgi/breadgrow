@@ -5,85 +5,76 @@
 
 
 
-<style>
+    <style>
+        .container {
+            padding: 0;
+            margin: 0, auto;
+        }
 
+        .container a {
+            width: 45%;
+            max-width: 250px;
+        }
 
-    .container {
-        padding: 0;
-        margin: 0, auto;
-    }
+        .container div {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 1rem;
+        }
 
+        .container img {
+            width: 100%;
+            border-radius: 1rem;
+        }
 
-    .container a{
-        width: 45%;
-        max-width: 250px;
-    }
-    .container div {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      border-radius: 1rem;
-    }
-
-    .container img {
-        width: 100%;
-        border-radius: 1rem;
-    }
-
-</style>
+    </style>
     {% if article_list %}
-    <div class="container">
-        {% for article in article_list %}
-        <a href="{% url 'articleapp:detail' pk=article.pk %}">
-            {% include 'snippets/card.html' with article=article %}
-        </a>
-        {% endfor %}
-    </div>
-    <script src="{% static 'js/magicgrid.js' %}"></script>
+        <div class="container">
+            {% for article in article_list %}
+                <a href="{% url 'articleapp:detail' pk=article.pk %}">
+{#                상위 템플릿 폴더 snippets에서 가져옴#}
+                    {% include 'snippets/card.html' with article=article %}
+                </a>
+            {% endfor %}
+        </div>
+        <script src="{% static 'js/magicgrid.js' %}"></script>
     {% else %}
-    <div class="text-center">
-        <h1>아직 게시글이 없습니다!</h1>
-    </div>
+        <div class="text-center">
+            <h1>아직 게시글이 없습니다!</h1>
+        </div>
     {% endif %}
 
+    {#                상위 템플릿 폴더 snippets에서 페이지 번호리스트 가져옴#}
     {% include 'snippets/pagination.html' with page_obj=page_obj %}
 
 
     <div style="text-align: center">
-
-<style>
-
-    .container div {
-        width: 250px;
-        background-color: antiquewhite;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        border-radius: 1rem;
-    }
-    .container img {
-        width: 100%;
-        border-radius: 1rem;
-
-    }
+        <style>
+            .container div {
+                width: 250px;
+                background-color: antiquewhite;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                border-radius: 1rem;
+            }
+            .container img {
+                width: 100%;
+                border-radius: 1rem;
+            }
+        </style>
 
 
-
-</style>
-
-
-    <!DOCTYPE html>
-    <div class="container">
-    </div>
-
-     <div style="text-align: center">
-        <a href="{% url 'articleapp:create' %}" class="btn btn-dark rounded-pill mt-3 mb-3 px-3">
-            게시글 작성
-        </a>
-    </div>
-
-
-<script src="{% static 'js/magicgrid.js' %}"></script>
+        <div class="container">
+        </div>
+        <div style="text-align: center">
+            <a href="{% url 'articleapp:create' %}" class="btn btn-dark rounded-pill mt-3 mb-3 px-3">
+                게시글 작성
+            </a>
+        </div>
+{#        매직 그리드 자바스크립트#}
+        <script src="{% static 'js/magicgrid.js' %}"></script>
 
 
 

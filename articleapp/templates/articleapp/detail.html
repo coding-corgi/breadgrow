@@ -2,68 +2,48 @@
 
 {% block content %}
 
-
+{#게시글 상세페이지 뷰#}
 <div>
-  <div style="text-align: center; max-width: 700px; margin: 4rem auto;">
-
-    <h3 style="background-color: rgba(193,193,193,0.2); height: 2.2rem; text-align: left; padding-left: 1rem;">
-      {{ target_article.title }}
-
-    </h3>
-
-
-{#    <div style="height: 2rem">#}
-{#      <a href="{% url 'likeapp:article_like' pk=target_article.pk %}">#}
-{#        <i style="vertical-align: middle; font-size: 1.2rem; color :#F77 "#}
-{#           class="material-icons">#}
-{#         favorite#}
-{#        </i>#}
-{#      </a>#}
-{#      <span style="vertical-align: middle; font-size: 1.2rem;" >#}
-{#        {{ target_article.like }}#}
-{#      </span>#}
-{#    </div>#}
-    <div style="display: block; margin-left: auto; text-align: right;">
-        {% if target_article.writer.profile.image %}
-        <img src="{{ target_article.writer.profile.image.url }}" alt="" style=" display: inline-block; padding: 0; height: 2rem; width: 2rem; text-align: right; object-fit: cover;">
-        {% else %}
-            ❓❓❓
-        {% endif %}
-
+    <div style="text-align: center; max-width: 700px; margin: 4rem auto;">
+        <h3 style="background-color: rgba(193,193,193,0.2); height: 2.2rem; text-align: left; padding-left: 1rem;">
+            {{ target_article.title }}
+        </h3>
+        <div style="display: block; margin-left: auto; text-align: right;">
+            {% if target_article.writer.profile.image %}
+                <img src="{{ target_article.writer.profile.image.url }}" alt=""
+                     style=" display: inline-block; padding: 0; height: 2rem; width: 2rem; text-align: right; object-fit: cover;">
+            {% else %}
+                ❓❓❓
+            {% endif %}
 
             <h4 style="font-family: ONE-Mobile-POP; display: inline-block; margin-right: 0.3rem; font-size: 18px; padding: 0; text-align: left; margin-left: auto;">{{ target_article.writer.profile.nickname }}
-    </h4>
-        <div style="font-size: 0.8rem;">{{ target_article.created_at }}</div>
+            </h4>
+            <div style="font-size: 0.8rem;">{{ target_article.created_at }}</div>
+        </div>
+
+        <hr>
+
+        <img style="width: 50%; border-radius: 1rem; margin: 2rem 0" src="{{ target_article.image.url }}" alt="">
+        <div class="text-left" style="text-align: left;">
+            {{ target_article.content | safe }}
+        </div>
+        {% if target_article.writer == user %}
+            <a href="{% url 'articleapp:update' pk=target_article.pk %}"
+               class="btn btn-primary rounded-pill col-3">
+                Update
+            </a>
+            <a href="{% url 'articleapp:delete' pk=target_article.pk %}"
+               class="btn btn-danger rounded-pill col-3">
+                Delete
+            </a>
+        {% endif %}
+        <hr>
+
+        {% for comment in target_article.comment.all %}
+            {% include 'commentapp/detail.html' with comment=comment %}
+        {% endfor %}
+        {% include 'commentapp/create.html' with article=target_article %}
+
     </div>
-
-
-    <hr>
-
-    <img style="width: 50%; border-radius: 1rem; margin: 2rem 0" src="{{ target_article.image.url }}" alt="">
-
-    <div class="text-left" style="text-align: left;">
-      {{ target_article.content | safe  }}
-    </div>
-
-    {% if target_article.writer == user %}
-    <a href="{% url 'articleapp:update' pk=target_article.pk %}"
-    class="btn btn-primary rounded-pill col-3">
-      Update
-    </a>
-
-    <a href="{% url 'articleapp:delete' pk=target_article.pk %}"
-    class="btn btn-danger rounded-pill col-3">
-      Delete
-    </a>
-    {% endif %}
-    <hr>
-
-    {% for comment in target_article.comment.all %}
-     {% include 'commentapp/detail.html' with comment=comment %}
-    {% endfor %}
-
-    {% include 'commentapp/create.html' with article=target_article %}
-
-  </div>
 </div>
 {% endblock %}

@@ -1,124 +1,80 @@
-
 {% extends 'base.html' %}
 {% block content %}
 
-
-
-
-
-      {% if not target_kcal.kcal %}
-
-
-      <a href="{% url 'kcalculatorapp:create' %}">
-        <h2 style="font-family: ONE-Mobile-POP">
-          Create Kcal
-
-
-
-        </h2>
-      </a>
-      {% else %}
-
-
-          <div style="display: flex; text-align: center;justify-content: center">
-                            {#  탄단지 비율 바  #}
-              <div class="kcal_1st_line" style="margin-bottom: 4rem ">
-                   <div class="btn-group" role="group" aria-label="Basic example" style="height: 3.5rem; text-align: center;">
-
-
-                    {#    carbo/protein/fat kcal g % table                   #}
+    {#칼로리 계산기 상세페이지 템플릿#}
+    {% if not target_kcal.kcal %}
+        <a href="{% url 'kcalculatorapp:create' %}">
+            <h2 style="font-family: ONE-Mobile-POP">Create Kcal</h2>
+        </a>
+    {% else %}
+        <div style="display: flex; text-align: center;justify-content: center">
+            {#  탄단지 비율 바  #}
+            <div class="kcal_1st_line" style="margin-bottom: 4rem ">
+                <div class="btn-group" role="group" aria-label="Basic example"
+                     style="height: 3.5rem; text-align: center;">
                 </div>
 
-                  <div class="progress" style="border-radius: 0.5rem; height: 50px;font-size: 15px">
-                      <div class="progress-bar bg-primary" role="progressbar" style="  size:5px;  width: {{ kcl.carbo_per }}%;" aria-valuenow="25" aria-valuenow="25" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
-                          <div>탄수화물</div>
-                           {{ kcl.carbo_per }}%
-                      </div>
-                      <div class="progress-bar bg-success" role="progressbar" style=" width: {{ kcl.proten_per }}%;" aria-valuenow="25" aria-valuenow="25" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
-                          <div>단백질</div> {{ kcl.proten_per }}%
-                      </div>
-                      <div class="progress-bar bg-danger" role="progressbar" style="  width: {{ kcl.fat_per }}%;" aria-valuenow="25" aria-valuenow="25" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
-                          <div>지방</div> {{ kcl.fat_per }}%
-                      </div>
-                  </div>
-                  <table class="table">
-                      <thead>
-                      <tr>
-                          <th scope="col"></th>
-                          <th scope="col">Kcal</th>
-                          <th style="position: relative;bottom: 5px" scope="col">g</th>
-                          <th scope="col">%</th>
-                      </tr>
-                      </thead>
+                <div class="progress" style="border-radius: 0.5rem; height: 50px;font-size: 15px">
+                    <div class="progress-bar bg-primary" role="progressbar"
+                         style="  size:5px;  width: {{ kcl.carbo_per }}%;" aria-valuenow="25" aria-valuenow="25"
+                         aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
+                        <div>탄수화물</div>
+                        {{ kcl.carbo_per }}%
+                    </div>
+                    <div class="progress-bar bg-success" role="progressbar" style=" width: {{ kcl.proten_per }}%;"
+                         aria-valuenow="25" aria-valuenow="25" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
+                        <div>단백질</div>
+                        {{ kcl.proten_per }}%
+                    </div>
+                    <div class="progress-bar bg-danger" role="progressbar" style="  width: {{ kcl.fat_per }}%;"
+                         aria-valuenow="25" aria-valuenow="25" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
+                        <div>지방</div>
+                        {{ kcl.fat_per }}%
+                    </div>
+                </div>
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th scope="col"></th>
+                        <th scope="col">Kcal</th>
+                        <th style="position: relative;bottom: 5px" scope="col">g</th>
+                        <th scope="col">%</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <th scope="row">탄수화물</th>
+                        <td id="carbo_kcal">{{ kcl.carbo_kcal }}</td>
+                        <td id="carbo_g">{{ kcl.carbo_g }}</td>
+                        <td id="carbo_per">{{ kcl.carbo_per }}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">단백질</th>
+                        <td id="protein_kcal">{{ kcl.proten_kcal }}</td>
+                        <td id="protein_g">{{ kcl.proten_g }}</td>
+                        <td id="protein_per">{{ kcl.proten_per }}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">지방</th>
+                        <td id="fat_kcal">{{ kcl.fat_kcal }}</td>
+                        <td id="fat_g">{{ kcl.fat_g }}</td>
+                        <td id="fat_per">{{ kcl.fat_per }}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">총 칼로리</th>
+                        <td id="fat_kcal"><strong>{{ bmr }}</strong></td>
+                        <td id="fat_g"></td>
+                        <td id="fat_per"></td>
+                    </tr>
+                    </tbody>
 
-                      <tbody>
-                      <tr>
-                          <th scope="row">탄수화물</th>
-                          <td id="carbo_kcal">{{ kcl.carbo_kcal }}</td>
-                          <td id="carbo_g">{{ kcl.carbo_g }}</td>
-                          <td id="carbo_per">{{ kcl.carbo_per }}</td>
-
-                      </tr>
-                      <tr>
-                          <th scope="row">단백질</th>
-                          <td id="protein_kcal">{{ kcl.proten_kcal }}</td>
-                          <td id="protein_g">{{ kcl.proten_g }}</td>
-                          <td id="protein_per">{{ kcl.proten_per }}</td>
-
-
-                      </tr>
-                      <tr>
-                          <th scope="row">지방</th>
-                          <td id="fat_kcal">{{ kcl.fat_kcal }}</td>
-                          <td id="fat_g">{{ kcl.fat_g }}</td>
-                          <td id="fat_per">{{ kcl.fat_per }}</td>
-                      </tr>
-                      <tr>
-                          <th scope="row">총 칼로리</th>
-                          <td id="fat_kcal"><strong>{{ bmr }}</strong></td>
-                          <td id="fat_g"></td>
-                          <td id="fat_per"></td>
-                      </tr>
-
-
-                      </tbody>
-
-
-
-                  </table>
-                  <span style="font-family: 'ONE 모바일고딕 Bold' ;display: block; text-align: right">
-                      정보 수정하기
-                      <a class="material-icons"
-                         style="box-shadow: 0 0 4px #ccc; border-radius: 5rem; mb-3; padding: 0.3rem;"
-                         href="{% url 'kcalculatorapp:update' pk=target_kcal.kcal.pk %}">
+                </table>
+                <span style="font-family: 'ONE 모바일고딕 Bold' ;display: block; text-align: right">정보 수정하기<a class="material-icons" style="box-shadow: 0 0 4px #ccc; border-radius: 5rem; mb-3; padding: 0.3rem;" href="{% url 'kcalculatorapp:update' pk=target_kcal.kcal.pk %}">
                           edit
                       </a>
                   </span>
-
-
-
-
-              </div>
-
-
-{#              <div class="kcal_4st_line">#}
-{#                  <div style="position: absolute; right: 640px; bottom: 200px">#}
-{##}
-{#                      <span style="font-family: 'ONE 모바일고딕 Bold' ;display: inline-block">정보 수정하기</span>#}
-{#                      <a class="material-icons"#}
-{#                         style="box-shadow: 0 0 4px #ccc; border-radius: 5rem; mb-3; padding: 0.3rem;"#}
-{#                         href="{% url 'kcalculatorapp:update' pk=target_kcal.kcal.pk %}">#}
-{#                          edit </a>#}
-{#                  </div>#}
-{#              </div>#}
-
-          </div>
-
-
-
-</div>
-      {% endif %}
-
-
-
+            </div>
+        </div>
+        </div>
+    {% endif %}
 {% endblock %}

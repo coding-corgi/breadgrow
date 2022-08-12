@@ -2,6 +2,7 @@
 
 {% block content %}
 
+    {# 계정 상세페이지 템플릿#}
     <div>
         <div style="text-align: center; max-width: 500px; margin: 4rem auto;">
 
@@ -9,60 +10,51 @@
 
 
 
-            <img src="{{ target_user.profile.image.url }}" alt="" style="height: 12rem; width: 12rem; border-radius: 20rem; margin-bottom: 2rem; object-fit: cover;">
+                <img src="{{ target_user.profile.image.url }}" alt=""
+                     style="height: 12rem; width: 12rem; border-radius: 20rem; margin-bottom: 2rem; object-fit: cover;">
 
-            <h2 style="font-family:ONE-Mobile-Regular">
-{#                {{ target_user.profile.nickname }}#}
-{#            <div class="card" style="width: 18rem; margin-inline: auto">#}
-{#                <div class="card-body">#}
-{#                    <h5 class="card-title" style="text-align: center; font-size: 1.7rem; margin-top: 1rem;"> [{{ target_user.profile.nickname }}]</h5>#}
-{#                    <p class="card-text" style="font-size: 1.2rem;text-align: center"> {{ target_user.profile.message }}</p>#}
-                {% if target_user == user %}
-{#                    <a class="material-icons"#}
-{#                       style="box-shadow: 0 0 4px #ccc; border-radius: 5rem; mb-3; padding: 0.3rem;"#}
-{#                       href="{% url 'profileapp:update' pk=target_user.profile.pk %}">#}
-{#                        edit#}
-{#                    </a>#}
-
-
-                    <div class="card" style="width: 14rem; margin-inline: auto;  border: rgba(72,56,62,0.2) solid 5px; border-radius: 15px ">
-                        <div class="card-body" style="padding: 0.5rem 0.5rem;">
-                            <h5 class="card-title" style="text-align: center; font-size: 1.7rem; margin-top: 1rem;"> [ {{ target_user.profile.nickname }} ]</h5>
-                            <p class="card-text" style="font-size: 1.2rem;text-align: center"> {{ target_user.profile.message }}</p>
-                            <a class="material-icons"
-                       style="box-shadow: 0 0 5px #ccc; border-radius: 5rem; mb-3;font-size: 20px; padding: 0.2rem; display: table; margin-left: auto;"
-                       href="{% url 'profileapp:update' pk=target_user.profile.pk %}">
-                        edit
-                    </a>
-{#                            <a href="#" class="btn btn-primary"  style="display: block;font-size:10px ; width: max-content; width:60px; border-radius:200px; text-align: center; margin-left: auto;">정보 수정</a>#}
-                        </div>
-                    </div>
-                {% else %}
-                    <div class="card" style="width: 18rem; margin-inline: auto">
-                <div class="card-body">
-                    <h5 class="card-title" style="text-align: center; font-size: 1.7rem; margin-top: 1rem;"> [{{ target_user.profile.nickname }}]</h5>
-                    <p class="card-text" style="font-size: 1.2rem;text-align: center"> {{ target_user.profile.message }}</p>
-                </div>
-
-                {% endif %}
-            </h2>
-            <h5 style="margin-bottom: 3rem">
-{#                {{ target_user.profile.message }}#}
-            </h5>
-            {% else %}
-
-
-            {% if target_user == user %}
-            <a href="{% url 'profileapp:create' %}">
                 <h2 style="font-family:ONE-Mobile-Regular">
-                    Create Profile
+                    {% if target_user == user %}
+
+
+                        <div class="card"
+                             style="width: 14rem; margin-inline: auto;  border: rgba(72,56,62,0.2) solid 5px; border-radius: 15px ">
+                            <div class="card-body" style="padding: 0.5rem 0.5rem;">
+                                <h5 class="card-title" style="text-align: center; font-size: 1.7rem; margin-top: 1rem;">
+                                    [ {{ target_user.profile.nickname }} ]</h5>
+                                <p class="card-text"
+                                   style="font-size: 1.2rem;text-align: center"> {{ target_user.profile.message }}</p>
+                                <a class="material-icons"
+                                   style="box-shadow: 0 0 5px #ccc; border-radius: 5rem; mb-3;font-size: 20px; padding: 0.2rem; display: table; margin-left: auto;"
+                                   href="{% url 'profileapp:update' pk=target_user.profile.pk %}">
+                                    edit
+                                </a>
+                            </div>
+                        </div>
+                    {% else %}
+                        <div class="card" style="width: 18rem; margin-inline: auto">
+                        <div class="card-body">
+                            <h5 class="card-title" style="text-align: center; font-size: 1.7rem; margin-top: 1rem;">
+                                [{{ target_user.profile.nickname }}]</h5>
+                            <p class="card-text"
+                               style="font-size: 1.2rem;text-align: center"> {{ target_user.profile.message }}</p>
+                        </div>
+
+                    {% endif %}
                 </h2>
-            </a>
             {% else %}
-                <h2>
-                    닉네임 미설정
-                </h2>
-            {% endif %}
+
+                {% if target_user == user %}
+                    <a href="{% url 'profileapp:create' %}">
+                        <h2 style="font-family:ONE-Mobile-Regular">
+                            Create Profile
+                        </h2>
+                    </a>
+                {% else %}
+                    <h2>
+                        닉네임 미설정
+                    </h2>
+                {% endif %}
             {% endif %}
 
 
@@ -71,16 +63,10 @@
             {% if target_user == user %}
                 <div style="font-family: ONE-Mobile-POP; color: navy;">
                     <button type="button" class="btn btn-warning" style="display: inline-block;">
-                        <a href="{% url 'accountapp:update' pk=user.pk %}" style="color: white";>
+                        <a href="{% url 'accountapp:update' pk=user.pk %}" style="color: white" ;>
                             비밀번호 변경
                         </a>
                     </button>
-                    {#            <a href="{% url 'accountapp:update' pk=user.pk %}">#}
-                    {#                <p>#}
-                    {#                    비밀번호 변경#}
-                    {#                </p>#}
-                    {#            </a>#}
-
                     <button type="button" class="btn btn-danger" style="display: inline-block;">
                         <a href="{% url 'accountapp:delete' pk=user.pk %}" style="color: white;">
                             회원 탈퇴
@@ -88,20 +74,6 @@
                     </button>
 
                 </div>
-
-
-
-{#            #}
-{#                Danger#}
-{#            </button>#}
-{#            <a href="{% url 'accountapp:delete' pk=user.pk %}">#}
-{#                <p>#}
-{#                   회원 탈퇴#}
-{#                </p>#}
-{#            </a>#}
-
-
-
 
             {% endif %}
         </div>

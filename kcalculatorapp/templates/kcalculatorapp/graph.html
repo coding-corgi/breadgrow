@@ -2,45 +2,19 @@
 
 
 
-
+{#칼로리 계산기 그래프 템플릿#}
 {% block content %}
-
-
-
-    <script src="https://code.highcharts.com/stock/highstock.js"></script>
-    <script src="https://code.highcharts.com/stock/modules/data.js"></script>
-    <script src="https://code.highcharts.com/stock/modules/exporting.js"></script>
-    <script src="https://code.highcharts.com/stock/modules/export-data.js"></script>
-    <script src="https://code.highcharts.com/stock/modules/accessibility.js"></script>
-
-
-
-
-
-
-
-
-
-
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+        <script src="https://code.highcharts.com/modules/exporting.js"></script>
+        <script src="https://code.highcharts.com/modules/export-data.js"></script>
+        <script src="https://code.highcharts.com/modules/accessibility.js"></script>
     {% if not target_kcal.kcal %}
-
-
         <a href="{% url 'kcalculatorapp:create' %}">
             <h2 style="font-family: ONE-Mobile-POP;text-align: center;">
                 Create Kcal
             </h2>
         </a>
     {% else %}
-
-
-
-
-
-        <script src="https://code.highcharts.com/highcharts.js"></script>
-        <script src="https://code.highcharts.com/modules/exporting.js"></script>
-        <script src="https://code.highcharts.com/modules/export-data.js"></script>
-        <script src="https://code.highcharts.com/modules/accessibility.js"></script>
-
         <figure class="highcharts-figure">
             <div id="container"></div>
             <p class="highcharts-description">
@@ -50,10 +24,6 @@
     {% endif %}
 
 
-
-
-
-
     <script>
         kcal_list = []
         if ('{{ target_kcal.kcal.goal }}' == 'lean') {
@@ -61,18 +31,11 @@
                 kcal_list.push(Math.round(((({{ target_kcal.kcal.weight }}  -(- {{ target_kcal.kcal.speed }} / 7000)*30 * i) ) + Number.EPSILON) * 100) / 100)
             }
         }
-
-
         else {
             for (let i = 0; i < 13; i++) {
                  kcal_list.push(Math.round(((({{ target_kcal.kcal.weight }}  -( {{ target_kcal.kcal.speed }} / 7000)*30 * i) ) + Number.EPSILON) * 100) / 100)
                 }
         }
-
-
-
-
-
 
         Highcharts.chart('container', {
             chart: {
@@ -101,15 +64,12 @@
                 }
             },
 
-
-
             series: [{
                 name: '{{ target_kcal.profile.nickname }}',
                 data: kcal_list
             }]
         });
     </script>
-
 
 
 {% endblock %}

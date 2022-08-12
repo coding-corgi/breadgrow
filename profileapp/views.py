@@ -10,6 +10,7 @@ from profileapp.forms import ProfileCreationForm
 from profileapp.models import Profile
 
 
+# 프로필 생성 뷰
 class ProfileCreateView(CreateView):
     model = Profile
     context_object_name = 'target_profile'
@@ -26,6 +27,7 @@ class ProfileCreateView(CreateView):
     def get_success_url(self):
         return reverse('accountapp:detail', kwargs={'pk':self.object.user.pk})
 
+# 프로필 수정 뷰 계정 인증확인
 @method_decorator(profile_ownership_required, 'get')
 @method_decorator(profile_ownership_required, 'post')
 class ProfileUpdateView(UpdateView):

@@ -5,6 +5,7 @@ from accountapp.views import AccountCreateView, AccountDetailView, AccountUpdate
 
 app_name ='accountapp'
 
+# 계정 로그인,로그아웃 / 생성,상세페이지,수정/삭제 라우터
 urlpatterns =[
     path('login/', LoginView.as_view(template_name='accountapp/login.html'), name='login'),
     path('logout/', LogoutView.as_view(), name='logout'),

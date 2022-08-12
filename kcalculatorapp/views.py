@@ -1,7 +1,7 @@
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.core.exceptions import ObjectDoesNotExist
-from django.http import HttpResponse, HttpResponseRedirect
+from django.http import  HttpResponseRedirect
 from django.shortcuts import render
 
 # Create your views here.
@@ -16,6 +16,7 @@ from kcalculatorapp.models import Kcal
 has_ownership = [kcalculator_ownership_required, login_required]
 
 
+# 칼로리 계산기 정보생성 뷰
 @method_decorator(login_required, 'get')
 @method_decorator(login_required, 'post')
 class KcalCreateView(CreateView):
@@ -33,13 +34,11 @@ class KcalCreateView(CreateView):
     def get_success_url(self):
         return reverse('kcalculatorapp:detail', kwargs={'pk': self.object.user.pk})
 
-
+# 칼로리 계산기 상세페이지 뷰 / 정보가 없으면 createview로 리다이렉트
 class KcalDetailView(DetailView):
     model = User
     context_object_name = 'target_kcal'
     template_name = 'kcalculatorapp/detail.html'
-
-
 
     def dispatch(self, request, *args, **kwargs):
         try:
@@ -48,11 +47,6 @@ class KcalDetailView(DetailView):
             return super(KcalDetailView, self).dispatch(request, *args, **kwargs)
         except ObjectDoesNotExist:
             return HttpResponseRedirect(reverse('kcalculatorapp:create'))
-
-
-
-
-
 
 
     def get_context_data(self, **kwargs):
@@ -93,21 +87,7 @@ class KcalDetailView(DetailView):
                           'fat_g': fat_g}
         return context
 
-
-
-
-    #
-    # if request.user.is_anonymous:
-    #     user_membership = None
-    # else:
-    #     try:
-    #         user_membership = Customer.objects.get(user=self.request.user)
-    #     except Customer.DoesNotExist:
-    #         user_membership = None
-    # kwargs['user_membership'] = user_membership
-    # return super().get_context_data(**kwargs)
-
-
+# # 칼로리계산기 수정 뷰/계정인증여뷰
 @method_decorator(kcalculator_ownership_required, 'get')
 @method_decorator(kcalculator_ownership_required, 'post')
 class KcalUpdateView(UpdateView):
@@ -119,10 +99,8 @@ class KcalUpdateView(UpdateView):
     def get_success_url(self):
         return reverse('kcalculatorapp:detail', kwargs={'pk': self.object.user.pk})
 
-
 def home(request):
     return render(request, 'kcalculatorapp/home.html')
-
 
 class KcalGraphView(DetailView):
     model = User

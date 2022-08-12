@@ -1,5 +1,7 @@
 from .base import *
 
+
+# 배포 설정파일
 def read_secret(secret_name):
     file =open('/run/secrets/' +secret_name)
     secret =file.read()

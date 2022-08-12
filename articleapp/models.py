@@ -1,10 +1,10 @@
 from django.contrib.auth.models import User
 from django.db import models
 
-# Create your models here.
+
+# 게시글 커스텀 모델 /
 class Article(models.Model):
     writer = models.ForeignKey(User, on_delete=models.SET_NULL, related_name='article', null=True)
-    # project = models.ForeignKey(Project, on_delete=models.SET_NULL, related_name='article', null=True)
 
     title = models.CharField(max_length=25, null=True)
     image = models.ImageField(upload_to='article/', null=False)
@@ -12,10 +12,9 @@ class Article(models.Model):
 
     created_at = models.DateTimeField(auto_now=True, null=True)
 
+    # 날짜 역순 게시
     class Meta:
-        ordering = ['-id']  # as you don't have created field. Reverse by ID will also show give you snippet_form_model in reverse order
-
+        ordering = ['-id']
     def __str__(self):
         return self.title
 
-    # like =models.IntegerField(default=0)

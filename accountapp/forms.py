@@ -11,6 +11,7 @@ class AccountUpdateForm(UserCreationForm):
         self.fields['username'].disabled = True
 
 
+# 회원가입 글씨 수정
 class CustomUserCreationForm(UserCreationForm):
     # UserCreationForm을 상속받아 CustomUserCreationForm을 만든다.
     username = forms.CharField(

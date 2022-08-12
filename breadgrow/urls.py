@@ -20,6 +20,7 @@ from django.urls import path, include
 
 from kcalculatorapp.views import home
 
+# 메인 프로젝트에서 앱별로 url 연결
 urlpatterns = [
     path('', home, name='home'),
     path('admin/', admin.site.urls),
