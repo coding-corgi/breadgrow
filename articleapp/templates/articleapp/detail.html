@@ -25,13 +25,13 @@
 {#    </div>#}
     <div style="display: block; margin-left: auto; text-align: right;">
         {% if target_article.writer.profile.image %}
-        <img src="{{ target_article.writer.profile.image.url }}" alt="" style=" display: inline-block; padding: 0; height: 3rem; width: 3rem; text-align: right; object-fit: cover;">
+        <img src="{{ target_article.writer.profile.image.url }}" alt="" style=" display: inline-block; padding: 0; height: 2rem; width: 2rem; text-align: right; object-fit: cover;">
         {% else %}
             ❓❓❓
         {% endif %}
 
 
-            <h4 style="font-family: ONE-Mobile-POP; display: inline-block; margin-right: 0.3rem; font-size: 26px; padding: 0; text-align: left; margin-left: auto;">{{ target_article.writer.profile.nickname }}
+            <h4 style="font-family: ONE-Mobile-POP; display: inline-block; margin-right: 0.3rem; font-size: 18px; padding: 0; text-align: left; margin-left: auto;">{{ target_article.writer.profile.nickname }}
     </h4>
         <div style="font-size: 0.8rem;">{{ target_article.created_at }}</div>
     </div>
