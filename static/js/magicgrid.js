@@ -1,7 +1,5 @@
 'use strict';
 
-
-//매직 그리드 자바 스크립트. 커스텀 .299line
 /**
  * @author emmanuelolaojo
  * @since 11/11/18
@@ -296,8 +294,7 @@ let magicGrid = new MagicGrid({
   useMin: true
 });
 
-
-//사진이 불러올떄까지 기다리고 함수 실행var masonrys = document.getElementsByTagName("img");
+var masonrys = document.getElementsByTagName("img");
 
 for (let i = 0; i < masonrys.length; i++){
       masonrys[i].addEventListener('load', function (){
