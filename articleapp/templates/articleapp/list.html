@@ -49,32 +49,12 @@
     {% include 'snippets/pagination.html' with page_obj=page_obj %}
 
 
-    <div style="text-align: center">
-        <style>
-            .container div {
-                width: 250px;
-                background-color: antiquewhite;
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                border-radius: 1rem;
-            }
-
-            .container img {
-                width: 100%;
-                border-radius: 1rem;
-            }
-        </style>
-
-
-        <div class="container">
-        </div>
         <div style="text-align: center">
-            <a href="{% url 'articleapp:create' %}" class="btn btn-dark rounded-pill mt-3 mb-3 px-3">
-                게시글 작성
-            </a>
-        </div>
+        <a href="{% url 'articleapp:create' %}" class="btn btn-dark rounded-pill mt-3 mb-3 px-3">
+            Create Article
+        </a>
     </div>
+
 
 
 
