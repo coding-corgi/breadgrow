@@ -10,7 +10,7 @@ from django.utils.decorators import method_decorator
 from django.views.generic import CreateView, DetailView, UpdateView, DeleteView
 
 from accountapp.decorators import account_ownership_required
-from accountapp.forms import AccountUpdateForm
+from accountapp.forms import AccountUpdateForm, CustomUserCreationForm
 from accountapp.models import HellWorld
 
 has_ownership = [account_ownership_required, login_required]
@@ -18,7 +18,7 @@ has_ownership = [account_ownership_required, login_required]
 
 class AccountCreateView(CreateView):
     model = User
-    form_class = UserCreationForm
+    form_class = CustomUserCreationForm
     success_url = reverse_lazy('kcalculatorapp:home')
     template_name = 'accountapp/create.html'
 

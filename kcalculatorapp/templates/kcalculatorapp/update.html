@@ -10,7 +10,7 @@
         <form action="{% url 'kcalculatorapp:update' pk=target_kcal.pk %}" method="post" enctype="multipart/form-data">
             {% csrf_token %}
             {% bootstrap_form form %}
-            <input type="submit" class="btn btn-dark rounded-pill col-6 mt-3">
+            <button type="submit"  class="btn btn-dark rounded-pill col-12 mt-3">입력</button>
         </form>
     </div>
 
