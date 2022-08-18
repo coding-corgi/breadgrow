@@ -37,7 +37,10 @@ DEBUG = False
 
 ALLOWED_HOSTS = ['*']
 
-CSRF_TRUSTED_ORIGINS = ['breadgrow.me']
+CSRF_TRUSTED_ORIGINS = [
+    "https://breadgrow.me",
+    "https://www.breadgrow.me",
+]
 
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
