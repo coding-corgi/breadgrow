@@ -12,6 +12,7 @@
 
     
 - 회원가입 / 개인정보 변경 / 회원 탈퇴 / 닉네임 중복 방지 / 다른유저 정보 수정 불가
+- 
     ![image](https://github.com/user-attachments/assets/3cacbde8-548e-46c5-a6f1-c4a7d6743850)
     ![image](https://github.com/user-attachments/assets/a7d747c4-5833-4a49-b820-0f8dba38eb4e)
     ![image](https://github.com/user-attachments/assets/1de985ab-4970-47cd-90c5-f7ce6273180b)
